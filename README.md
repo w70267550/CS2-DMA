@@ -8,6 +8,7 @@ Features:
 
 Radar use:
 You will need node.js for radar (https://nodejs.org/en/download)
+Download source / app from https://github.com/clauadv/cs2_webradar
 1. Open Radar folder, run install.bat
 2. Open Start.bat
 3. Run cs2-dma.exe (make sure cs2 is open)
@@ -20,6 +21,8 @@ Things to do:
 2. Update radar to clauadv latest version
 3. add bomb esp + timer
 4. Add vis check to new maps + update vischeck on old maps
+
+Current Vis Check maps ( https://www.mediafire.com/file/b2k0bgryxhvzr1x/maps.zip/file )
 
 
 Credits: 
