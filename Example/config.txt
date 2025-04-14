@@ -1,0 +1,17 @@
+width=2560
+height=1440
+selectedKmboxType=0
+KmboxType=Net
+KmboxIP=192.168.2.188
+KmboxPort=8808
+KmboxUUID=A1205414
+KmboxComPort=0
+BPro_Porter=115200
+auto_connect=true
+aim_time=0.005
+aim_button1=0
+aim_button2=5
+max_fov=200
+Smoothing=1.495
+speed_X=20.858
+speed_Y=20.505
