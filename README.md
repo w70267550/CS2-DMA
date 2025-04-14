@@ -28,3 +28,4 @@ Current Vis Check maps ( https://www.mediafire.com/file/b2k0bgryxhvzr1x/maps.zip
 Credits: 
 https://github.com/clauadv/cs2_webradar
 https://github.com/AtomicBool/cs2-map-parser
+https://github.com/a2x/cs2-dumper
