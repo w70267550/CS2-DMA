@@ -113,7 +113,7 @@ public:
 	bool RCS;
 	int shotsFired;
 
-	int aimbotstopshotsFired = 10;
+	int aimbotstopshotsFired = 20;
 
 	float m_pitch = 0.022;
 	float m_yaw = 0.022;
@@ -143,17 +143,17 @@ public:
 	//int radarupdatedelay = 100;
 
 	float max_fov = 200;
-	float Smoothing = 5;
-	float speed_X = 5;
-	float speed_Y = 5;
+	float Smoothing = 25;
+	float speed_X = 200;
+	float speed_Y = 200;
 
 	bool keyboardstate;
 
 	bool EnableVSync;
 
-	bool VisibleCheck = true;
+	bool VisibleCheck = false;
 
-	bool BlackScreen = true;
+	bool BlackScreen = false;
 
 	//bool autobhop;
 

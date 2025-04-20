@@ -226,38 +226,38 @@ public:
     }
 
     void load_map(std::string map_name) {
-        //auto begin = std::chrono::steady_clock::now();
+        auto begin = std::chrono::steady_clock::now();
 
-        // 获取当前目录路径
         fs::path current_path = fs::current_path();
-        // 拼接文件夹路径和文件名
         fs::path file_path = current_path / "maps" / (map_name + ".map");
+        bool mapfound = true;
 
         std::ifstream in(file_path.string(), std::ios::in);
         if (!in.is_open()) {
-            std::cerr << " [ ! ] Map not found - " << map_name << ".map" << std::endl;
+            mapfound = false;
+            std::cerr << " [ ! ] Map not found - " << map_name << ".map" << " (ADD MAPS TO MAPS FOLDER)" << std::endl;
             //return;
 
         }
+        if (mapfound) {
+            std::istreambuf_iterator<char> beg(in), end;
+            std::string strdata(beg, end);
+            std::vector<Triangle> triangles = bytes_to_vec<Triangle>(strdata);
+            std::string().swap(strdata);
+            in.close();
 
-        std::istreambuf_iterator<char> beg(in), end;
-        std::string strdata(beg, end);
-        std::vector<Triangle> triangles = bytes_to_vec<Triangle>(strdata);
-        std::string().swap(strdata);
-        in.close();
+            kd_tree = buildKDTree(triangles);
+            std::vector<Triangle>().swap(triangles);
 
-        kd_tree = buildKDTree(triangles);
-        std::vector<Triangle>().swap(triangles);
+            auto i_end = std::chrono::steady_clock::now();
+            std::cout << " [ > ] " << map_name << ".map Loaded in " << std::chrono::duration<double, std::milli>(i_end - begin).count() << "ms" << std::endl;
+        }
 
-        //auto i_end = std::chrono::steady_clock::now();
-        //std::cout << " [#] MAP Loaded [" << map_name << "] " << std::chrono::duration<double, std::milli>(i_end - begin).count() << "ms" << std::endl;
+        
     }
 
     bool is_visible(Vector ray_origin, Vector ray_end) {
-        //auto begin = std::chrono::steady_clock::now();
-        //std::cout << " [ > ] Vischeck Delay > " << std::chrono::duration<double, std::milli>(i_end - begin).count() << "ms" << std::endl;
         return !rayIntersectsKDTree(kd_tree, ray_origin, ray_end);
-        //auto i_end = std::chrono::steady_clock::now();
         
     }
 };

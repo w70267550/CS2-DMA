@@ -386,11 +386,6 @@ void UpData2()
 
                     mem.AddScatterReadRequest(handle, Client_BASE + Offset::GlobalVars, &G_map.global_vars, sizeof(uint64_t));
 
-
-
-                    
-
-
                     //mem.AddScatterReadRequest(handle, Client_BASE + Offset::PlantedC4, &planted_c4, sizeof(int));
 
                     //std::cout << planted_c4 << std::endl;
@@ -406,7 +401,7 @@ void UpData2()
                 if (G_map.map_name_tmp[0] != '\0')
                 {
                     std::string nowmap = G_map.map_name_tmp;
-                    if (G_map.map_name != G_map.map_name_tmp && nowmap != "<empty>" && nowmap != "client")
+                    if (G_map.map_name != G_map.map_name_tmp && nowmap != "<empty>" && nowmap != "client" && nowmap != "SNDLVL_40dB")
                     {
                         map.unload();
 
@@ -533,17 +528,12 @@ void UpData2()
 
                     // new ray trace selected bone index pos 6 = HEAD CURRENTLY (set.aimbone)
 
-                    /// 
-
-                    ///
-
-                    ///
 
                     players[i].r_end = players[i].BoneArray[set.aimbone].Pos;
-                    //players[i].r_end.z += 73;
+                    //players[i].r_end.z += 73; // old r trace
 
                     players[i].r_start = players[LocalPlayerControllerIndex].BoneArray[6].Pos;
-                    //players[i].r_start.z += 73;
+                    //players[i].r_start.z += 73; // old r trace
 
 
                     if (map.is_visible(players[i].r_start, players[i].r_end))
@@ -606,30 +596,6 @@ void UpData2()
                 //players[i].r_start = players[LocalPlayerControllerIndex].BoneArray[6].Pos;
                 //players[i].r_start.z += 73;
 
-
-                //std::cout << set.aimPunch.x << set.aimPunch.y << std::endl;
-
-                // need to add heads to skeleton esp then check if within circle for triggerbot -- this is cheap but works
-
-
-                
-
-                ///bool triggering = false;
-                ///if (mem.GetKeyboard()->IsKeyDown(set.trigger_button1))
-                ///{
-                //    triggering = true;
-                //}
-
-
-                //if (map.is_visible(players[i].r_start, players[i].r_end) && aim_index < 64 && aim_index > 0 && triggering && players[aim_index].isDraw && fov < 4.f && (players[aim_index].isVisible || !set.VisibleCheck) && ((players[aim_index].TeamID_Radar != players[LocalPlayerControllerIndex].TeamID) || !set.aimbotteamcheck) && set.TriggerAimToggle)
-                //{
-                    // shoot players[i].isVisible = true;
-               //     aimbot.LeftClick(1);
-                //}
-
-
-
-                /// triggerbot function
 
                 
 
@@ -763,7 +729,7 @@ bool CreateDeviceD3D(HWND hWnd)
     sd.BufferDesc.Width = 0;
     sd.BufferDesc.Height = 0;
     sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    sd.BufferDesc.RefreshRate.Numerator = 60;
+    sd.BufferDesc.RefreshRate.Numerator = 144;
     sd.BufferDesc.RefreshRate.Denominator = 1;
     sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
     sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
@@ -1391,7 +1357,7 @@ void imgui_Star()
                     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 0));
                     ImGui::BeginChild("G-Tab", ImVec2(173 * dpi_scale, 650 * dpi_scale), false);
                     {
-                        DrawFontStroke(tab_text3, 42 * dpi_scale, ImVec2(20 * dpi_scale + p.x, 20 * dpi_scale + p.y), ImColor(204, 0, 255), "CS2-DMA");
+                        DrawFontStroke(tab_text3, 36 * dpi_scale, ImVec2(20 * dpi_scale + p.x, 20 * dpi_scale + p.y), ImColor(204, 0, 255), "CS2-DMA");
 
                         //tab black box
                         //ImGui::GetWindowDrawList()->AddRectFilled(ImVec2(0 + p.x, 0 + p.y), ImVec2(170 * dpi_scale + p.x, 490 * dpi_scale + p.y), ImGui::GetColorU32(colors::Tab_Child), s.WindowRounding);
@@ -1406,7 +1372,7 @@ void imgui_Star()
                         if (ImGui::Tab("F", "VISUALS", "ESP SETTINGS", 1 == Gui::tabs, ImVec2(150 * dpi_scale, 42 * dpi_scale))) Gui::tabs = 1;
                         //if (ImGui::Tab("B", "CONFIG", "SAVE CONFIGS", 2 == Gui::tabs, ImVec2(150 * dpi_scale, 42 * dpi_scale))) Gui::tabs = 2;
                         if (ImGui::Tab("E", "SETTINGS", "KMBOX & DISPLAY", 3 == Gui::tabs, ImVec2(150 * dpi_scale, 42 * dpi_scale))) Gui::tabs = 3;
-                        /*if (ImGui::Tab("G", "QUIT", "CLOSE SOFTWARE", 4 == Gui::tabs, ImVec2(150 * dpi_scale, 42 * dpi_scale))) {
+                        if (ImGui::Tab("X", "QUIT", "CLOSE SOFTWARE", 4 == Gui::tabs, ImVec2(150 * dpi_scale, 42 * dpi_scale))) {
                             
                             ImGui_ImplDX11_Shutdown();
                             ImGui_ImplWin32_Shutdown();
@@ -1414,7 +1380,7 @@ void imgui_Star()
                             mem.~Memory();
                             Sleep(100);
                             exit(0);  
-                        }*/
+                        }
 
                     }ImGui::EndChild();
 
@@ -1489,16 +1455,16 @@ void imgui_Star()
                             ImGui::BeginChildPos("AIMBOT SETTINGS", ImVec2(280 * dpi_scale, 460 * dpi_scale), true);
                             {
                                 ImGui::SetWindowFontScale(dpi_scale);
-                                ImGui::Checkbox("Toggle Aimbot", &set.AimbotAimToggle);
+                                ImGui::Checkbox("Toggle", &set.AimbotAimToggle);
                                 ImGui::SameLine(150, 0);
-                                ImGui::Checkbox("FOV Circle", &set.showfov);
+                                ImGui::Checkbox("FOV", &set.showfov);
                                 
                                 ImGui::Checkbox("Team Check", &set.aimbotteamcheck);
                                 ImGui::SameLine(150, 0);
-                                ImGui::Checkbox("Visible Check", &set.VisibleCheck);
+                                ImGui::Checkbox("Vis Check", &set.VisibleCheck);
                                 if (ImGui::IsItemHovered()) {
                                     ImGui::BeginTooltip();
-                                    ImGui::Text("Mills & Thera Not Supported!!!");
+                                    ImGui::Text("MAPS NEED UPDATING\nMANY MAPS NOT SUPPORTED");
                                     ImGui::EndTooltip();
                                 }
 
@@ -1510,7 +1476,7 @@ void imgui_Star()
                                 }
                                 ImGui::Keybind("AIMBOT Button [1]", &set.aim_button1, true);
                                 ImGui::Keybind("AIMBOT Button [2]", &set.aim_button2, true);
-                                ImGui::SliderFloat("In-Game Sens", &set.sensitivity, 0.1f, 20.f, "%.1f");
+                                ImGui::SliderFloat("In-Game Mouse Sensitivity", &set.sensitivity, 0.1f, 20.f, "%.1f");
                             }
 
                             ImGui::EndChild();
@@ -1522,12 +1488,11 @@ void imgui_Star()
 
                                 ImGui::SetWindowFontScale(dpi_scale);
 
-                                ImGui::SliderFloat("KmBox Delay Tick", &set.aim_tick, 0.0f, 0.05f);
+                                ImGui::SliderFloat("Kmbox Delay Ticks", &set.aim_tick, 0.0f, 0.05f);
                                 ImGui::SliderFloat("FOV", &set.max_fov, 1.0f, 500.0f, "%.1f");
                                 ImGui::SliderFloat("Smoothing", &set.Smoothing, 1.0f, 50.f, "%.1f");
-                                ImGui::SliderFloat("Aim Speed Horizontal", &set.speed_X, 1.0f, 400.f, "%.1f");
-                                ImGui::SliderFloat("Aim Speed Vertical", &set.speed_Y, 1.0f, 400.f, "%.1f");
-                                
+                                ImGui::SliderFloat("Aim X", &set.speed_X, 1.0f, 400.f, "%.1f");
+                                ImGui::SliderFloat("Aim Y", &set.speed_Y, 1.0f, 400.f, "%.1f");
                                 ImGui::SliderInt("Stop Aimbot After X Bullets", &set.aimbotstopshotsFired, 1, 30, "%d Bullets");
 
                             }
@@ -1562,7 +1527,7 @@ void imgui_Star()
                                 ImGui::SliderFloat("Text Vertical Offset", &set.textoffset, 3.0f, 70.0f, "%.1f");
                                 //ImGui::SliderFloat("Health Bar Offset", &set.healthboxoffset, -20.0f, 40.0f, "%.1f");
 
-                                ImGui::SliderInt("Vischeck Delay MS", &set.vischeckdelay, 1, 100, "%dms");
+                                //ImGui::SliderInt("Vischeck Delay MS", &set.vischeckdelay, 1, 100, "%dms");
                             }
                             ImGui::EndChild();
                             /// color picker stuff here
@@ -1695,14 +1660,14 @@ void imgui_Star()
 
 
                                 //ImGui::SliderInt("Radar Update Delay", &set.radarupdatedelay, 10, 5000, "%dms");
-                                if (ImGui::Button("EXIT SOFTWARE")) {
+                                /*if (ImGui::Button("EXIT SOFTWARE")) {
                                     ImGui_ImplDX11_Shutdown();
                                     ImGui_ImplWin32_Shutdown();
                                     ImGui::DestroyContext();
                                     mem.~Memory();
                                     Sleep(100);
                                     exit(0);
-                                }
+                                }*/
                                 
 
 
