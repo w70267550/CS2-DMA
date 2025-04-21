@@ -3,10 +3,10 @@
 ![cs2](https://github.com/user-attachments/assets/3a9f827e-a403-41b1-a0ce-bb3c9fbba01b)
 
 Features:
-- Kmbox B + Net Support
-- Aimbot ( No RCS Yet )
-- Fuser ESP ( Box, Skeleton, Name, Weapon etc... )
-- Web Radar ( Full support, steam profile links, grenades, money etc )
+- Kmbox Support (BPro & Net)
+- Aimbot ( Fov, Smoothing, Step X/Y )
+- Fuser ESP ( Box, Skeleton, Name, Weapon )
+- Web Radar ( Steam profile links, Grenades, Money, Armor )
 
 Radar use:
 You will need node.js for radar (https://nodejs.org/en/download)
@@ -19,15 +19,13 @@ Download source / app from https://github.com/clauadv/cs2_webradar
 Share the radar by opening port 5173 on your router yourip:5173 + Firewall on Radar PC
 
 Things to do:
-1. Add RCS to aimbot
-2. Update radar to clauadv latest version
-3. add bomb esp + timer
-4. Add vis check to new maps + update vischeck on old maps
+1. Add RCS to Aimbot
+2. Add Bomb Esp + Timer to Fuser & Radar
+3. Add Triggerbot
+4. Aimbot Deadzone
 
-Current Vis Check maps ( https://www.mediafire.com/file/b2k0bgryxhvzr1x/maps.zip/file )
-
+Maps ( outdated )
 
 Credits: 
 https://github.com/clauadv/cs2_webradar
-https://github.com/AtomicBool/cs2-map-parser
 https://github.com/a2x/cs2-dumper
